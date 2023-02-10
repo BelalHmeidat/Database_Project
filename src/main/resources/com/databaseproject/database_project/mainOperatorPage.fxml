@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="700.0" prefWidth="900.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.databaseproject.database_project.UIController">
+<VBox alignment="CENTER" onMouseEntered="#updateTripList" prefHeight="720.0" prefWidth="1280.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.databaseproject.database_project.OperatorMainController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -84,22 +84,22 @@
          <Font size="28.0" />
       </font>
    </Label>
-   <SplitPane dividerPositions="0.29797979797979796" prefHeight="419.0" prefWidth="860.0">
+   <SplitPane dividerPositions="0.21607431340872374" prefHeight="419.0" prefWidth="860.0">
      <items>
-       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="295.0">
             <children>
-               <ListView fx:id="tripsList" prefHeight="382.0" prefWidth="252.0" />
+               <ListView fx:id="tripsList" prefHeight="382.0" prefWidth="271.0" />
             </children>
          </AnchorPane>
        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
             <children>
                <GridPane layoutX="2.0" layoutY="2.0" prefHeight="358.0" prefWidth="599.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="2.0">
                  <columnConstraints>
-                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="37.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="168.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="195.0" />
-                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="0.0" prefWidth="24.0" />
-                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="190.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="72.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="192.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.0" minWidth="10.0" prefWidth="341.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="0.0" prefWidth="8.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="278.0" />
                  </columnConstraints>
                  <rowConstraints>
                      <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -117,14 +117,18 @@
                                     <font>
                                        <Font size="16.0" />
                                     </font></Label>
-                                 <Label fx:id="remainingTime" text=":" />
+                                 <Label fx:id="tripRemainingTimeLabel" text=":" />
                               </children>
                            </HBox>
-                           <ProgressBar fx:id="tripProgress" prefWidth="200.0" progress="0.0" />
+                           <StackPane prefHeight="150.0" prefWidth="200.0">
+                              <children>
+                                 <ProgressBar fx:id="tripProgress" prefWidth="200.0" progress="0.0" />
+                              </children>
+                           </StackPane>
                            <HBox alignment="CENTER" prefHeight="23.0" prefWidth="196.0" spacing="10.0">
                               <children>
                                  <Label text="Status:" />
-                                 <Label text="-" />
+                                 <Label fx:id="tripStatusLabel" text="-" />
                               </children>
                            </HBox>
                         </children>
@@ -138,7 +142,7 @@
                               <font>
                                  <Font size="16.0" />
                               </font></Label>
-                           <Label text="Label">
+                           <Label fx:id="tripIDLabel">
                               <font>
                                  <Font size="16.0" />
                               </font></Label>
@@ -146,11 +150,11 @@
                      </HBox>
                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="4">
                         <children>
-                           <Label text="Booking Time:">
+                           <Label text="Booking Date:">
                               <font>
                                  <Font size="16.0" />
                               </font></Label>
-                           <Label text=":">
+                           <Label fx:id="tripDateLabel" text=":">
                               <font>
                                  <Font size="16.0" />
                               </font></Label>
@@ -162,14 +166,14 @@
                               <font>
                                  <Font size="16.0" />
                               </font></Label>
-                           <VBox prefHeight="200.0" prefWidth="100.0">
+                           <VBox prefHeight="115.0" prefWidth="159.0">
                               <children>
-                                 <Label fx:id="beginCity" prefHeight="33.0" prefWidth="59.0" text="-" textAlignment="CENTER">
+                                 <Label fx:id="tripBeginCityLabel" prefHeight="34.0" prefWidth="174.0" text="-" textAlignment="CENTER">
                                     <font>
                                        <Font size="28.0" />
                                     </font>
                                  </Label>
-                                 <Label fx:id="beginTime" text=" : ">
+                                 <Label fx:id="tripBeginTimeLabel" prefHeight="20.0" prefWidth="176.0" text=" : ">
                                     <font>
                                        <Font size="16.0" />
                                     </font></Label>
@@ -193,14 +197,14 @@
                               <font>
                                  <Font size="16.0" />
                               </font></Label>
-                           <VBox prefHeight="200.0" prefWidth="100.0">
+                           <VBox prefHeight="115.0" prefWidth="225.0">
                               <children>
-                                 <Label fx:id="endCity" prefHeight="33.0" prefWidth="59.0" text="-" textAlignment="CENTER">
+                                 <Label fx:id="tripEndCityLabel" prefHeight="34.0" prefWidth="226.0" text="-" textAlignment="CENTER">
                                     <font>
                                        <Font size="28.0" />
                                     </font>
                                  </Label>
-                                 <Label fx:id="endTime" text=" : ">
+                                 <Label fx:id="tripEndTimeLabel" prefHeight="20.0" prefWidth="229.0" text=" : ">
                                     <font>
                                        <Font size="16.0" />
                                     </font></Label>
@@ -219,7 +223,7 @@
                                     <font>
                                        <Font size="16.0" />
                                     </font></Label>
-                                 <Label fx:id="driverName" text="-" />
+                                 <Label fx:id="tripDriverNameLabel" text="-" />
                               </children>
                            </HBox>
                            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
@@ -228,7 +232,7 @@
                                     <font>
                                        <Font size="16.0" />
                                     </font></Label>
-                                 <Label fx:id="driverPhone" text="-">
+                                 <Label fx:id="tripDriverPhoneNumberLabel" text="-">
                                     <font>
                                        <Font size="16.0" />
                                     </font></Label>
@@ -244,9 +248,9 @@
                                     <font>
                                        <Font size="16.0" />
                                     </font></Label>
-                                 <Label fx:id="numberOfPassengers" text="-">
+                                 <Label fx:id="tripPassengersNumberLabel" text="-">
                                     <font>
-                                       <Font size="28.0" />
+                                       <Font size="18.0" />
                                     </font></Label>
                               </children>
                            </HBox>
@@ -256,7 +260,7 @@
                                     <font>
                                        <Font size="16.0" />
                                     </font></Label>
-                                 <Label fx:id="pasengerPhone" text="-">
+                                 <Label fx:id="tripPassengerPhoneNumberLabel" text="-">
                                     <font>
                                        <Font size="16.0" />
                                     </font></Label>
@@ -266,34 +270,23 @@
                      </VBox>
                      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                         <children>
-                           <Label text="Scheduled for:">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                           </Label>
-                           <StackPane fx:id="BeginTime" prefHeight="48.0" prefWidth="101.0">
-                              <children>
-                                 <Label alignment="CENTER" text=":">
-                                    <font>
-                                       <Font size="28.0" />
-                                    </font>
-                                 </Label>
-                              </children>
-                           </StackPane>
+                           <StackPane fx:id="BeginTime" prefHeight="48.0" prefWidth="101.0" />
                         </children>
                      </VBox>
-                     <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                       <buttons>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <children>
                            <Button cancelButton="true" mnemonicParsing="false" text="Cancel" textFill="#eb2121">
                               <font>
                                  <Font size="16.0" />
-                              </font></Button>
+                              </font>
+                           </Button>
                            <Button fx:id="modifyTripButton" defaultButton="true" mnemonicParsing="false" prefWidth="120.0" text="Modify">
                               <font>
                                  <Font size="16.0" />
-                              </font></Button>
-                       </buttons>
-                     </ButtonBar>
+                              </font>
+                           </Button>
+                        </children>
+                     </HBox>
                   </children>
                </GridPane>
             </children>
@@ -303,7 +296,7 @@
    <ButtonBar prefHeight="40.0" prefWidth="200.0">
      <buttons>
           <Button onAction="#onMakeNewTripClick" text="Make New Trip" />
-       <Button cancelButton="true" mnemonicParsing="false" text="Exit" />
+       <Button cancelButton="true" mnemonicParsing="false" onAction="#closeOperatorMainStage" text="Exit" />
      </buttons>
    </ButtonBar>
 </VBox>

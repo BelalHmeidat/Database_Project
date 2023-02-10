@@ -6,14 +6,13 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="399.0" prefWidth="500.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.databaseproject.database_project.UIController">
+<VBox alignment="CENTER" prefHeight="399.0" prefWidth="500.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.databaseproject.database_project.NewTripController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -21,59 +20,56 @@
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="460.0" spacing="20.0">
          <children>
             <Label text="Passenger Name" />
-            <TextField />
+            <TextField fx:id="passangerNameField" onMouseClicked="#initialize" />
             <Separator orientation="VERTICAL" prefHeight="200.0" />
             <Label text="#" />
-            <Spinner maxWidth="70.0" />
+            <Spinner fx:id="passangersNumberSpinner" disable="true" maxWidth="70.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" fillHeight="false" prefHeight="40.0" prefWidth="460.0" spacing="30.0">
          <children>
             <Label text="Phone Number" />
-            <TextField />
+            <TextField fx:id="passangerPhoneNumberField" disable="true" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="460.0" spacing="30.0">
          <children>
             <Label text="Select Route:" />
-            <MenuButton mnemonicParsing="false" text="Routes">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </MenuButton>
+            <MenuButton fx:id="routeMenuButton" disable="true" mnemonicParsing="false" text="Routes" />
             <Separator orientation="VERTICAL" prefHeight="200.0" />
             <Label text="Cost" />
-            <TextField prefWidth="70.0" />
+            <TextField fx:id="tripCostField" disable="true" prefWidth="70.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="46.0" prefWidth="460.0" spacing="30.0">
+         <children>
+            <Label text="Trip Time" />
+            <TextField fx:id="tripTimeField" disable="true" onAction="#updateEstimatedTime" prefHeight="26.0" prefWidth="101.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="460.0" spacing="30.0">
          <children>
-            <Label text="Select Time" />
-            <DatePicker />
+            <Label text="Trip Date" />
+            <DatePicker fx:id="tripDateField" disable="true" editable="false" opacity="0.62" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="460.0" spacing="30.0">
          <children>
             <Label text="Select Driver:" />
-            <MenuButton mnemonicParsing="false" text="Drivers">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-            </MenuButton>
+            <MenuButton fx:id="driverMenuButton" disable="true" mnemonicParsing="false" text="Drivers" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="460.0" spacing="30.0">
          <children>
             <Label text="Estimated Arrival:" />
-            <Label text=":" />
+            <Label fx:id="estimatedTimeLabel" text=":" />
          </children>
       </HBox>
+      <Label fx:id="newTripError" textFill="#e80c0c" />
       <ButtonBar prefHeight="40.0" prefWidth="500.0">
         <buttons>
-          <Button cancelButton="true" mnemonicParsing="false" text="Cancel" textFill="#dd1d1d" translateX="-160.0" />
-            <Button defaultButton="true" mnemonicParsing="false" text="Confirm" translateX="-140.0" />
+          <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" textFill="#dd1d1d" translateX="-160.0" />
+            <Button fx:id="confirmTripButton" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#confirmTripButtonClicked" text="Confirm" translateX="-140.0" />
         </buttons>
       </ButtonBar>
    </children>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="400.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.databaseproject.database_project.GeneralLoginController">
+   <children>
+      <ImageView fx:id="operatorAvatar" fitHeight="300.0" fitWidth="300.0" layoutX="294.0" onMouseClicked="#showOperatorLoginPage" onMouseEntered="#makeOperatorAvatarFocused" onMouseExited="#makeOperatorAvatarNotFocused" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@DALL·E%202023-02-04%2014.36.01%20-%20operator%20Avatar.png" />
+         </image></ImageView>
+      <ImageView fx:id="managerAvatar" fitHeight="400.0" fitWidth="300.0" layoutX="4.0" onMouseClicked="#showManagerLoginPage" onMouseEntered="#makeManagerAvatarFocused" onMouseExited="#makeManagerAvatarNotFocused" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@DALL·E%202023-02-04%2014.38.00%20-%20female%20manager%20avatar%20white%20background.png" />
+         </image></ImageView>
+      <Text fx:id="adminLoginCaption" layoutX="75.0" layoutY="328.0" opacity="0.3" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Login">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text fx:id="operatorLoginCaption" layoutX="350.0" layoutY="329.0" opacity="0.3" strokeType="OUTSIDE" strokeWidth="0.0" text="Operator Login">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

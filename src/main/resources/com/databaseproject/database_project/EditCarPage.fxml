@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="322.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="197.0" layoutY="58.0" prefHeight="34.0" prefWidth="410.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="170.0" text="Car Type" textAlignment="CENTER" textFill="#0b9971">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <TextField fx:id="EditCarTypeField" prefHeight="34.0" prefWidth="175.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="197.0" layoutY="110.0" prefHeight="34.0" prefWidth="390.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="170.0" text="Year of made" textFill="#0b9971">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="18.0" prefWidth="6.0" />
+            <TextField fx:id="EditCarYOMfield" prefHeight="34.0" prefWidth="174.0" />
+         </children>
+      </HBox>
+      <Label alignment="BASELINE_CENTER" cache="true" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="223.0" text="Edit Car" textFill="#0b9971">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <HBox layoutX="13.0" layoutY="180.0" prefHeight="32.0" prefWidth="665.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="102.0" text="Licence        : " textAlignment="CENTER" textFill="#0b9971">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="43.0" text="ID" textFill="#0b9971">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <TextField fx:id="EditCarLicenceIDField" prefHeight="34.0" prefWidth="65.0" />
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="123.0" text="Expiration Date" textFill="#0b9971">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <DatePicker fx:id="EditCarLicenceExpirationDateField" prefHeight="33.0" prefWidth="130.0" />
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="123.0" text="Renewal Date" textFill="#0b9971">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <DatePicker fx:id="EditCarLicenceRenewalDateField" prefHeight="33.0" prefWidth="130.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="336.0" layoutY="265.0" prefHeight="42.0" prefWidth="342.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#Edit_selected_Car_btn" prefHeight="40.0" prefWidth="110.0" text="Save" textFill="#0b9971">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="34.0" prefWidth="83.0" />
+            <Button mnemonicParsing="false" onAction="#Close_Edit_selected_Car_btn" prefHeight="40.0" prefWidth="126.0" text="Close" textFill="#0b9971">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
