@@ -11,6 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class ManagerMainController {
@@ -60,6 +62,47 @@ public class ManagerMainController {
     @FXML TableColumn<Car,Integer>CarDriver3Column;
 
     @FXML TableView<Car> CarsTable;
+    @FXML TableView<Trip> tripsTable;
+
+//    @FXML TableColumn<Trip, Integer> tripIDColumn;
+
+
+    @FXML TableColumn<Trip,Integer>tripDriverIDColumn;
+    @FXML TableColumn<Trip,Integer>tripopretorIDColumn;
+    @FXML TableColumn<Trip,Integer>tripcarIDColumn;
+    @FXML TableColumn<Trip ,String>tripFromColumn;
+    @FXML TableColumn<Trip,String>tripToColumn;
+    @FXML TableColumn<Trip, String>tripDateColumn;
+    @FXML TableColumn<Trip, String>tripBeginningTimeColumn;
+    @FXML TableColumn<Trip,String>tripEndTimeColumn;
+    @FXML TableColumn<Trip,String>tripStatusColumn;
+    @FXML public void fillTripsInManager() {
+        tripsTable.getItems().clear();
+        DataHandler.getAllTrips();
+        DataHandler.getAllRoutes();
+        DataHandler.getAllDrivers();
+        DataHandler.getAllCars();
+        DataHandler.getAllOperators();
+
+//        tripIDColumn.setCellValueFactory(new PropertyValueFactory<>("tripID"));
+        tripDriverIDColumn.setCellValueFactory(new PropertyValueFactory<>("driverID"));
+        tripopretorIDColumn.setCellValueFactory(new PropertyValueFactory<>("operatorID"));
+        tripcarIDColumn.setCellValueFactory(new PropertyValueFactory<>("carID"));
+//        Trip.getTripsDate();
+//        Trip.getTripFrom();
+//        Trip.getTripTo();
+//        Trip.getTripEndTime();
+//        Trip.getTripBeginningTime();
+        tripFromColumn.setCellValueFactory(new PropertyValueFactory<>("tripFrom"));
+        tripToColumn.setCellValueFactory(new PropertyValueFactory<>("tripTo"));
+        tripDateColumn.setCellValueFactory(new PropertyValueFactory<>("tripDate"));
+        tripBeginningTimeColumn.setCellValueFactory(new PropertyValueFactory<>("tripBeginningTime"));
+        tripEndTimeColumn.setCellValueFactory(new PropertyValueFactory<>("tripEndTime"));
+        tripStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+
+        tripsTable.setItems(Trip.getTripsList());
+    }
 
     @FXML public void fillCarsInManager() {
         CarsTable.getItems().clear();
@@ -87,14 +130,9 @@ public class ManagerMainController {
         if (operatorsTab.isSelected()){
             fillOperatorsInManager();
         }
-    }
-
-    @FXML public void fillTripsInManager(){
-//        tripsTable.getItems().clear();
-//        GetData.getAllTrips();
-//        tripIDColumn.setCellValueFactory(new PropertyValueFactory<>("tripID"));
-//        tripsTable.setItems(Trip.getTripsList());
-
+        if (tripsTab.isSelected()){
+            fillTripsInManager();
+        }
     }
 
     @FXML public void fillOperatorsInManager() {
@@ -197,7 +235,17 @@ public class ManagerMainController {
         //TODO
     }
     @FXML public void operatorAddButtonClicked(){
-        //TODO
+        FXMLLoader addOperatorPage = new FXMLLoader(getClass().getResource("AddOperatorPage.fxml"));
+        Scene addOperatorScene = null;
+        try {
+            addOperatorScene = new Scene(addOperatorPage.load(), 500, 400);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage newTripStage = new Stage();
+        newTripStage.setTitle("Add Operator");
+        newTripStage.setScene(addOperatorScene);
+        newTripStage.show();
     }
 
     @FXML public void operatorEditButtonClicked(){

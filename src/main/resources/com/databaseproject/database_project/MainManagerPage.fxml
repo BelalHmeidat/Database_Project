@@ -30,16 +30,17 @@
                      <children>
                         <VBox prefHeight="640.0" prefWidth="901.0">
                            <children>
-                              <TableView prefHeight="611.0" prefWidth="901.0">
+                              <TableView fx:id="tripsTable" prefHeight="611.0" prefWidth="901.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="From" />
-                                    <TableColumn prefWidth="75.0" text="To" />
-                                    <TableColumn prefWidth="75.0" text="Date" />
-                                    <TableColumn prefWidth="127.0" text="Beginnning Time" />
-                                    <TableColumn prefWidth="75.0" text="End Time" />
-                                    <TableColumn prefWidth="75.0" text="Driver" />
-                                    <TableColumn prefWidth="75.0" text="Car" />
-                                    <TableColumn prefWidth="75.0" text="Status" />
+                                    <TableColumn fx:id="tripFromColumn" prefWidth="75.0" text="From" />
+                                    <TableColumn fx:id="tripToColumn" prefWidth="75.0" text="To" />
+                                    <TableColumn fx:id="tripDateColumn" prefWidth="75.0" text="Date" />
+                                    <TableColumn fx:id="tripBeginningTimeColumn" prefWidth="127.0" text="Beginnning Time" />
+                                    <TableColumn fx:id="tripEndTimeColumn" prefWidth="75.0" text="End Time" />
+                                    <TableColumn fx:id="tripDriverIDColumn" prefWidth="75.0" text="Driver" />
+                                    <TableColumn fx:id="tripcarIDColumn" prefWidth="75.0" text="Car" />
+                                    <TableColumn fx:id="tripStatusColumn" prefWidth="75.0" text="Status" />
+                                    <TableColumn fx:id="tripopretorIDColumn" prefWidth="75.0" text="Operator" />
                                  </columns>
                               </TableView>
                               <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="901.0">
@@ -68,7 +69,6 @@
                                     <TableColumn prefWidth="155.0" text="Email" />
                                     <TableColumn prefWidth="82.0" text="DOB" />
                                     <TableColumn prefWidth="98.0" text="Shift" />
-                                    <TableColumn minWidth="5.0" prefWidth="107.0" text="Password" />
                                  </columns>
                               </TableView>
                               <HBox alignment="CENTER" prefHeight="35.0" prefWidth="900.0" spacing="30.0">

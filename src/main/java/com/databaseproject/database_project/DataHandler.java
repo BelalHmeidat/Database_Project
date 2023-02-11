@@ -405,4 +405,16 @@ public class DataHandler {
 //        }
 //    }
 
+    public static boolean checkPhoneValidity(String phone){
+        if (phone.length() != 11) return false;
+        for (int i = 0; i < phone.length(); i++) {
+            if (phone.charAt(i) < '0' || phone.charAt(i) > '9') return false;
+        }
+        return true;
+
+    }
+
+    public static void addOperator(Operator operator) {
+        //
+    }
 }

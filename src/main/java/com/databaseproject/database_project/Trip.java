@@ -10,6 +10,7 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,6 +28,50 @@ public class Trip {
 
     private boolean isCancelled =false;
     private boolean isFinished = false;
+
+
+
+    //Following attributes are for tableview filling only
+//    private java.util.Date tripDate;
+
+    SimpleStringProperty tripDate;
+    SimpleStringProperty tripFrom;
+    SimpleStringProperty tripTo;
+
+    SimpleStringProperty tripBeginningTime;
+
+    SimpleStringProperty tripEndTime;
+
+
+//    public static void getTripsDate() {
+//        for (Trip trip : trips){
+//            trip.tripDate = Date.valueOf(trip.departureTime.toLocalDate());
+//        }
+//    }
+
+//    public static void getTripFrom() {
+//        for (Trip trips : trips){
+//            trips.tripFrom = Route.getRoute(trips.routeID).getFrom();
+//        }
+//    }
+//
+//    public static void getTripTo() {
+//        for (Trip trips : trips){
+//            trips.tripTo = Route.getRoute(trips.routeID).getTo();
+//        }
+//    }
+//
+//    public static void getTripBeginningTime() {
+//        for (Trip trips : trips){
+//            trips.tripBeginningTime = trips.departureTime.toLocalTime();
+//        }
+//    }
+
+//    public static void getTripEndTime() {
+//        for (Trip trips : trips){
+//            trips.tripEndTime = trips.expectedArrivalTime.toLocalTime();
+//        }
+//    }
 
     public int getNumOfPassengers() {
         return numOfPassengers;
@@ -61,6 +106,11 @@ public Trip(int tripID, int operatorID, LocalDateTime departureTime, int driverI
         this.isCancelled = false;
         this.isFinished = false;
         this.expectedArrivalTime = expectedArrivalTime;
+        this.tripDate = new SimpleStringProperty(departureTime.toLocalDate().toString());
+        this.tripBeginningTime = new SimpleStringProperty(departureTime.toLocalTime().toString());
+        this.tripEndTime = new SimpleStringProperty(expectedArrivalTime.toLocalTime().toString());
+        this.tripFrom = new SimpleStringProperty(Route.getRoute(routeID).getFrom());
+        this.tripTo = new SimpleStringProperty(Route.getRoute(routeID).getTo());
 
     }
 
@@ -237,10 +287,10 @@ public Trip(int tripID, int operatorID, LocalDateTime departureTime, int driverI
         return new SimpleIntegerProperty(this.routeID);
     }
 
-    public SimpleStringProperty getDayOfTripProperty() {
-        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
-        return new SimpleStringProperty(dateFormat.format(this.departureTime));
-    }
+//    public SimpleStringProperty tripDate() {
+//        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
+//        return new SimpleStringProperty(dateFormat.format(this.departureTime));
+//    }
 
     public SimpleStringProperty getDepartureTimeProperty() {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
