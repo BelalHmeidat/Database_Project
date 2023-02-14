@@ -173,5 +173,23 @@
             <DatePicker fx:id="addDriverInsuranceRenewalDateField" prefHeight="33.0" prefWidth="130.0" />
          </children>
       </HBox>
+      <HBox layoutX="90.0" layoutY="385.0" prefHeight="91.0" prefWidth="274.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="52.0" prefWidth="92.0" text="Car" textFill="#19675d" />
+            <MenuButton fx:id="addDriverSelectCarMenuButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" popupSide="TOP" prefHeight="48.0" prefWidth="108.0" text="Select" textFill="#118d85">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+            </MenuButton>
+         </children>
+      </HBox>
+      <HBox layoutX="549.0" layoutY="457.0" prefHeight="39.0" prefWidth="172.0" spacing="20.0">
+         <children>
+            <Label text="Cost" textFill="#187c8c" />
+            <TextField fx:id="addDriverInsuranceCostField" prefHeight="37.0" prefWidth="124.0" />
+         </children>
+      </HBox>
+      <Label fx:id="addDriverErrorLabel" layoutX="422.0" layoutY="551.0" textFill="RED" />
    </children>
 </AnchorPane>

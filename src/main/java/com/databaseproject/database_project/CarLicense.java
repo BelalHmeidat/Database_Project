@@ -6,13 +6,13 @@ import java.util.Date;
 public class CarLicense {
 
     private int licenseID;
-    private Date expirationDate;
-    private Date renewalDate;
+    private java.sql.Date expirationDate;
+    private java.sql.Date renewalDate;
 
     public static ArrayList<CarLicense> carLicenses = new ArrayList<>();
 
 
-    public CarLicense(int licenseID, Date expirationDate, Date renewalDate) {
+    public CarLicense(int licenseID, java.sql.Date expirationDate, java.sql.Date renewalDate) {
         this.licenseID = licenseID;
         this.expirationDate = expirationDate;
         this.renewalDate = renewalDate;
@@ -26,19 +26,19 @@ public class CarLicense {
         this.licenseID = licenseID;
     }
 
-    public Date getExpirationDate() {
+    public java.sql.Date getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(java.sql.Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    public Date getRenewalDate() {
+    public java.sql.Date getRenewalDate() {
         return renewalDate;
     }
 
-    public void setRenewalDate(Date renewalDate) {
+    public void setRenewalDate(java.sql.Date renewalDate) {
         this.renewalDate = renewalDate;
     }
 

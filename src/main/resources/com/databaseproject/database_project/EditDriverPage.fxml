@@ -10,31 +10,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="691.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.databaseproject.database_project.EditDriverController">
    <children>
-      <HBox layoutX="197.0" layoutY="58.0" prefHeight="34.0" prefWidth="410.0">
+      <HBox alignment="CENTER_LEFT" layoutX="228.0" layoutY="45.0" prefHeight="34.0" prefWidth="182.0">
          <children>
-            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="170.0" text="Name " textAlignment="CENTER" textFill="#076984">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <TextField fx:id="editDriverNamefield" prefHeight="34.0" prefWidth="175.0" />
+            <TextField fx:id="editDriverNameField" prefHeight="34.0" prefWidth="170.0" />
          </children>
       </HBox>
-      <HBox layoutX="197.0" layoutY="110.0" prefHeight="34.0" prefWidth="390.0">
+      <HBox layoutX="229.0" layoutY="98.0" prefHeight="34.0" prefWidth="188.0">
          <children>
-            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="170.0" text="phone_number" textFill="#076984">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
             <Separator orientation="VERTICAL" prefHeight="18.0" prefWidth="6.0" />
-            <TextField fx:id="editDriverPhoneNumberField" prefHeight="34.0" prefWidth="174.0" />
+            <TextField fx:id="editDriverPhoneNumberField" prefHeight="34.0" prefWidth="169.0" />
          </children>
       </HBox>
-      <HBox layoutX="197.0" layoutY="163.0" prefHeight="34.0" prefWidth="448.0">
+      <HBox layoutX="57.0" layoutY="160.0" prefHeight="34.0" prefWidth="361.0">
          <children>
             <Label alignment="BASELINE_CENTER" prefHeight="26.0" prefWidth="169.0" text="Address" textFill="#076984">
                <font>
@@ -42,10 +32,10 @@
                </font>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <TextField fx:id="editDriverAddressField" prefHeight="32.0" prefWidth="174.0" />
+            <TextField fx:id="editDriverAddressField" prefHeight="32.0" prefWidth="172.0" />
          </children>
       </HBox>
-      <HBox layoutX="193.0" layoutY="217.0" prefHeight="32.0" prefWidth="417.0">
+      <HBox layoutX="51.0" layoutY="210.0" prefHeight="32.0" prefWidth="363.0">
          <children>
             <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="173.0" text="Email" textFill="#076984">
                <font>
@@ -56,7 +46,7 @@
             <TextField fx:id="editDriverEmailField" prefHeight="32.0" prefWidth="171.0" />
          </children>
       </HBox>
-      <HBox layoutX="188.0" layoutY="263.0" prefHeight="32.0" prefWidth="390.0">
+      <HBox layoutX="46.0" layoutY="260.0" prefHeight="32.0" prefWidth="374.0">
          <children>
             <Label alignment="BASELINE_CENTER" prefHeight="52.0" prefWidth="176.0" text="Date of Birth" textFill="#076984">
                <font>
@@ -67,18 +57,18 @@
             <DatePicker fx:id="editDriverDateOfBirthField" prefHeight="49.0" prefWidth="175.0" />
          </children>
       </HBox>
-      <HBox layoutX="187.0" layoutY="311.0" prefHeight="34.0" prefWidth="430.0">
+      <HBox layoutX="58.0" layoutY="309.0" prefHeight="34.0" prefWidth="362.0">
          <children>
-            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="175.0" text="Shift Type" textAlignment="CENTER" textFill="#076984">
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="167.0" text="Shift Type" textAlignment="CENTER" textFill="#076984">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <TextField fx:id="editDriverShiftTypeField" prefHeight="34.0" prefWidth="174.0" />
+            <TextField fx:id="editDriverShiftTypeField" prefHeight="34.0" prefWidth="171.0" />
          </children>
       </HBox>
-      <Label alignment="BASELINE_CENTER" cache="true" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="223.0" text="Edit Driver" textFill="#297578">
+      <Label alignment="BASELINE_CENTER" cache="true" layoutY="1.0" prefHeight="53.0" prefWidth="223.0" text="Edit Driver" textFill="#297578">
          <font>
             <Font size="24.0" />
          </font>
@@ -86,9 +76,40 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <HBox layoutX="13.0" layoutY="379.0" prefHeight="32.0" prefWidth="665.0">
+      <HBox alignment="CENTER_LEFT" layoutX="422.0" layoutY="55.0" prefHeight="41.0" prefWidth="625.0">
          <children>
-            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="102.0" text="Licence        : " textAlignment="CENTER" textFill="#076984">
+            <Label alignment="BASELINE_CENTER" prefHeight="50.0" prefWidth="172.0" text="Licence :" textAlignment="CENTER" textFill="#076984">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="59.0" text="ID" textFill="#12659c">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="23.0" prefWidth="9.0" />
+            <TextField fx:id="editDriverLicenceIDField" prefHeight="34.0" prefWidth="54.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="240.0" layoutY="639.0" prefHeight="39.0" prefWidth="422.0">
+         <children>
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#closeEditDriverButtonClicked" prefHeight="40.0" prefWidth="129.0" text="Close" textFill="#0e7791">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="40.0" prefWidth="82.0" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#saveEditDriverButtonClicked" prefHeight="40.0" prefWidth="132.0" text="Add" textFill="#0e7791">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="468.0" layoutY="276.0" prefHeight="41.0" prefWidth="293.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" prefHeight="39.0" prefWidth="145.0" text="Insurance :" textAlignment="CENTER" textFill="#076984">
                <font>
                   <Font size="15.0" />
                </font>
@@ -99,37 +120,72 @@
                </font>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <TextField fx:id="addDriverLicenceIDField" prefHeight="34.0" prefWidth="65.0" />
-            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="123.0" text="Expiration Date" textFill="#157c8e">
+            <TextField fx:id="editDriverInsuranceIDField" prefHeight="34.0" prefWidth="58.0" />
+         </children>
+      </HBox>
+      <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="43.0" prefHeight="39.0" prefWidth="155.0" text="Name " textAlignment="CENTER" textFill="#076984">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="58.0" layoutY="97.0" prefHeight="34.0" prefWidth="170.0" text="phone_number" textFill="#076984">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Separator layoutX="422.0" layoutY="44.0" orientation="VERTICAL" prefHeight="443.0" prefWidth="6.0" />
+      <HBox alignment="TOP_CENTER" layoutX="490.0" layoutY="119.0" prefHeight="41.0" prefWidth="345.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="123.0" text="Expiration Date" textFill="#157c8e">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <DatePicker fx:id="addDriverExpirationDateField" prefHeight="33.0" prefWidth="130.0" />
+            <Separator orientation="VERTICAL" prefHeight="53.0" prefWidth="3.0" />
+            <DatePicker fx:id="editDriverLicenceExpirationDateField" prefHeight="33.0" prefWidth="130.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="533.0" layoutY="186.0" prefHeight="39.0" prefWidth="625.0">
+         <children>
             <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="123.0" text="Renewal Date" textFill="#187c8c">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <DatePicker fx:id="addDriverRenewalDateField" prefHeight="33.0" prefWidth="130.0" />
+            <DatePicker fx:id="editDriverLicenceRenewalDateField" prefHeight="33.0" prefWidth="130.0" />
          </children>
       </HBox>
-      <HBox layoutX="312.0" layoutY="457.0" prefHeight="40.0" prefWidth="366.0">
+      <HBox layoutX="530.0" layoutY="334.0" prefHeight="34.0" prefWidth="292.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#edit_selected_driver_btn" prefHeight="40.0" prefWidth="129.0" text="Save" textFill="#0e7791">
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="123.0" text="Expiration Date" textFill="#157c8e">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
-            </Button>
-            <Separator orientation="VERTICAL" prefHeight="40.0" prefWidth="82.0" />
-            <Button mnemonicParsing="false" onAction="#close_edit_selected_driver_btn" prefHeight="40.0" prefWidth="132.0" text="Close" textFill="#0e7791">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <DatePicker fx:id="editDriverInsuranceExpirationDateField" prefHeight="33.0" prefWidth="130.0" />
          </children>
       </HBox>
+      <HBox layoutX="529.0" layoutY="389.0" prefHeight="39.0" prefWidth="291.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="123.0" text="Renewal Date" textFill="#187c8c">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <DatePicker fx:id="editDriverInsuranceRenewalDateField" prefHeight="33.0" prefWidth="130.0" />
+         </children>
+      </HBox>
+      <Separator layoutX="451.0" layoutY="240.0" prefHeight="24.0" prefWidth="458.0" />
+      <Label alignment="BASELINE_CENTER" layoutX="529.0" layoutY="450.0" prefHeight="34.0" prefWidth="123.0" text="Cost" textFill="#187c8c">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Separator layoutX="652.0" layoutY="446.0" orientation="VERTICAL" prefHeight="41.0" prefWidth="7.0" />
+      <TextField fx:id="editDriverInsuranceCost" layoutX="663.0" layoutY="446.0" prefHeight="34.0" prefWidth="58.0" />
+      <Label fx:id="editDriverErrorLabel" layoutX="424.0" layoutY="581.0" textFill="RED" />
    </children>
 </AnchorPane>

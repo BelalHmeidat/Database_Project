@@ -10,31 +10,27 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="322.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.databaseproject.database_project.EditCarController">
    <children>
-      <HBox layoutX="197.0" layoutY="58.0" prefHeight="34.0" prefWidth="410.0">
+      <HBox alignment="CENTER_LEFT" layoutX="228.0" layoutY="45.0" prefHeight="34.0" prefWidth="182.0" />
+      <HBox layoutX="229.0" layoutY="98.0" prefHeight="34.0" prefWidth="188.0">
          <children>
-            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="170.0" text="Car Type" textAlignment="CENTER" textFill="#0b9971">
+            <Separator orientation="VERTICAL" prefHeight="18.0" prefWidth="6.0" />
+            <TextField fx:id="EditCarTypeField" prefHeight="34.0" prefWidth="169.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="57.0" layoutY="160.0" prefHeight="34.0" prefWidth="361.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" prefHeight="26.0" prefWidth="169.0" text="Year Of Manufactur" textFill="#076984">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <TextField fx:id="EditCarTypeField" prefHeight="34.0" prefWidth="175.0" />
+            <TextField fx:id="EditCarYOMfield" prefHeight="32.0" prefWidth="172.0" />
          </children>
       </HBox>
-      <HBox layoutX="197.0" layoutY="110.0" prefHeight="34.0" prefWidth="390.0">
-         <children>
-            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="170.0" text="Year of made" textFill="#0b9971">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Separator orientation="VERTICAL" prefHeight="18.0" prefWidth="6.0" />
-            <TextField fx:id="EditCarYOMfield" prefHeight="34.0" prefWidth="174.0" />
-         </children>
-      </HBox>
-      <Label alignment="BASELINE_CENTER" cache="true" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="223.0" text="Edit Car" textFill="#0b9971">
+      <Label alignment="BASELINE_CENTER" cache="true" layoutX="275.0" prefHeight="53.0" prefWidth="223.0" text="Edit Car" textFill="#297578">
          <font>
             <Font size="24.0" />
          </font>
@@ -42,28 +38,73 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <HBox layoutX="13.0" layoutY="180.0" prefHeight="32.0" prefWidth="665.0">
+      <HBox alignment="CENTER_LEFT" layoutX="422.0" layoutY="55.0" prefHeight="41.0" prefWidth="412.0">
          <children>
-            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="102.0" text="Licence        : " textAlignment="CENTER" textFill="#0b9971">
+            <Label alignment="BASELINE_CENTER" prefHeight="50.0" prefWidth="172.0" text="Licence :" textAlignment="CENTER" textFill="#076984">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="43.0" text="ID" textFill="#0b9971">
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="59.0" text="ID" textFill="#12659c">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="23.0" prefWidth="9.0" />
+            <TextField fx:id="EditCarLicenceID" prefHeight="34.0" prefWidth="137.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="276.0" layoutY="572.0" prefHeight="39.0" prefWidth="291.0">
+         <children>
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#close_add_driver_btn_clicked" prefHeight="39.0" prefWidth="100.0" text="Close" textFill="#0e7791">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="40.0" prefWidth="82.0" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#save_selected_driver_btn_clicked" prefHeight="39.0" prefWidth="99.0" text="Add" textFill="#0e7791">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="468.0" layoutY="276.0" prefHeight="41.0" prefWidth="293.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" prefHeight="39.0" prefWidth="145.0" text="Insurance :" textAlignment="CENTER" textFill="#076984">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="43.0" text="ID" textFill="#12659c">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <TextField fx:id="EditCarLicenceIDField" prefHeight="34.0" prefWidth="65.0" />
-            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="123.0" text="Expiration Date" textFill="#0b9971">
+            <TextField fx:id="editCarInsuranceID" prefHeight="34.0" prefWidth="58.0" />
+         </children>
+      </HBox>
+      <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="96.0" prefHeight="34.0" prefWidth="170.0" text="Car Name" textFill="#076984">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Separator layoutX="419.0" layoutY="62.0" orientation="VERTICAL" prefHeight="403.0" prefWidth="6.0" />
+      <HBox alignment="TOP_CENTER" layoutX="490.0" layoutY="119.0" prefHeight="41.0" prefWidth="345.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="123.0" text="Expiration Date" textFill="#157c8e">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <Separator orientation="VERTICAL" prefHeight="53.0" prefWidth="3.0" />
             <DatePicker fx:id="EditCarLicenceExpirationDateField" prefHeight="33.0" prefWidth="130.0" />
-            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="123.0" text="Renewal Date" textFill="#0b9971">
+         </children>
+      </HBox>
+      <HBox layoutX="533.0" layoutY="186.0" prefHeight="39.0" prefWidth="625.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="123.0" text="Renewal Date" textFill="#187c8c">
                <font>
                   <Font size="14.0" />
                </font>
@@ -72,20 +113,40 @@
             <DatePicker fx:id="EditCarLicenceRenewalDateField" prefHeight="33.0" prefWidth="130.0" />
          </children>
       </HBox>
-      <HBox layoutX="336.0" layoutY="265.0" prefHeight="42.0" prefWidth="342.0">
+      <HBox layoutX="530.0" layoutY="334.0" prefHeight="34.0" prefWidth="292.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#Edit_selected_Car_btn" prefHeight="40.0" prefWidth="110.0" text="Save" textFill="#0b9971">
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="123.0" text="Expiration Date" textFill="#157c8e">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
-            </Button>
-            <Separator orientation="VERTICAL" prefHeight="34.0" prefWidth="83.0" />
-            <Button mnemonicParsing="false" onAction="#Close_Edit_selected_Car_btn" prefHeight="40.0" prefWidth="126.0" text="Close" textFill="#0b9971">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <DatePicker fx:id="editCarInsuranceExpirationDate" prefHeight="33.0" prefWidth="130.0" />
          </children>
       </HBox>
+      <HBox layoutX="529.0" layoutY="389.0" prefHeight="39.0" prefWidth="291.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" prefHeight="34.0" prefWidth="123.0" text="Renewal Date" textFill="#187c8c">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <DatePicker fx:id="editCarInsuranceRenwalDate" prefHeight="33.0" prefWidth="130.0" />
+         </children>
+      </HBox>
+      <Separator layoutX="451.0" layoutY="240.0" prefHeight="24.0" prefWidth="383.0" />
+      <Label alignment="BASELINE_CENTER" layoutX="529.0" layoutY="450.0" prefHeight="34.0" prefWidth="123.0" text="Cost" textFill="#187c8c">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Separator layoutX="652.0" layoutY="446.0" orientation="VERTICAL" prefHeight="41.0" prefWidth="7.0" />
+      <TextField fx:id="editCarInsuranceCost" layoutX="663.0" layoutY="446.0" prefHeight="34.0" prefWidth="58.0" />
+      <Label fx:id="editCarErrorLabel" layoutX="408.0" layoutY="520.0" prefHeight="20.0" prefWidth="38.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

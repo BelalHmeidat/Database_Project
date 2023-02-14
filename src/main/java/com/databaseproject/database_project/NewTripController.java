@@ -96,7 +96,7 @@ public class NewTripController {
         Driver tempDriver = null;
         try {
             tempDriver = Driver.getDriver(Integer.parseInt(driverMenuButton.getText().trim().split("-")[0].trim()));
-            carID = tempDriver.getCar().getCarID();
+            carID = tempDriver.getCarID();
             driverID = tempDriver.getDriverID();
         }catch (NumberFormatException e) {
             throw new RuntimeException("Driver ID must be a number");

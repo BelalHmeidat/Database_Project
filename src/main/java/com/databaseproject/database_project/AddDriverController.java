@@ -1,19 +1,22 @@
 package com.databaseproject.database_project;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
+import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
 
-import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class AddDriverController {
+public class AddDriverController implements Initializable {
 	@FXML
 	private TextField addDriverNamefield;
 	@FXML
@@ -33,13 +36,18 @@ public class AddDriverController {
 	@FXML
 	private DatePicker addDriverRenewalDateField;
 
+	@FXML
+	MenuButton addDriverSelectCarMenuButton;
+
+
+
 
 	@FXML private TextField addDriverInsuranceIDField;
 	@FXML private TextField addDriverInsuranceCostField;
 
-	@FXML private TextField addDriverInsuranceExpirationDateField;
+	@FXML private DatePicker addDriverInsuranceExpirationDateField;
 
-	@FXML private TextField addDriverInsuranceRenewalDateField;
+	@FXML private DatePicker addDriverInsuranceRenewalDateField;
 
 
 	@FXML
@@ -49,6 +57,10 @@ public class AddDriverController {
 	@FXML
 	public void save_selected_driver_btn_clicked(ActionEvent event) {
 		String driverName = addDriverNamefield.getText().trim();
+		DataHandler.getAllCars();
+		DataHandler.getAllDrivers();
+		DataHandler.getAllEmpsInsurances();
+		DataHandler.getAllDriversLicenses();
 	    if (driverName.isEmpty()) {
 	        addDriverErrorLabel.setText("Name can't be empty!");
 	        return;
@@ -65,7 +77,7 @@ public class AddDriverController {
 	    	addDriverErrorLabel.setText("Address type can't be empty!");
 	        return;
 	    }
-	    if (!addDriverShiftTypeField.getText().trim().equalsIgnoreCase("Day") || !addDriverShiftTypeField.getText().trim().equalsIgnoreCase("Night")) {
+	    if (!addDriverShiftTypeField.getText().trim().equalsIgnoreCase("Day") && !addDriverShiftTypeField.getText().trim().equalsIgnoreCase("Night")) {
 	    	addDriverErrorLabel.setText("Shift type is invalid!");
 	        return;
 	    }
@@ -93,18 +105,49 @@ public class AddDriverController {
 	    	addDriverErrorLabel.setText("Licence ID is already exists!");
 	        return;
 	    }
+		if (addDriverInsuranceIDField.getText().isEmpty()){
+			addDriverErrorLabel.setText("Insurance ID can't be empty!");
+			return;
+		}
+		if (checkInsurance(Integer.parseInt(addDriverInsuranceIDField.getText()))==true){
+			addDriverErrorLabel.setText("Insurance ID is already exists!");
+			return;
+		}
+		if (addDriverInsuranceCostField.getText().isEmpty()){
+			addDriverErrorLabel.setText("Insurance Cost can't be empty!");
+			return;
+		}
+		if (addDriverInsuranceExpirationDateField.getValue()==null){
+			addDriverErrorLabel.setText("Insurance Expiration Date can't be empty!");
+			return;
+		}
+		if (addDriverInsuranceRenewalDateField.getValue()==null){
+			addDriverErrorLabel.setText("Insurance Renewal Date can't be empty!");
+			return;
+		}
+
+		if (addDriverSelectCarMenuButton.getText().equals("Select Car")){
+			addDriverErrorLabel.setText("Car can't be empty!");
+			return;
+		}
 	    else {
+			Car car = Car.getCar(Integer.parseInt(addDriverSelectCarMenuButton.getText().trim().split(" ")[0]));
+			EmpInsurance insurance = new EmpInsurance(Integer.parseInt(addDriverInsuranceIDField.getText()), Float.parseFloat(addDriverInsuranceCostField.getText()), Date.valueOf(addDriverInsuranceExpirationDateField.getValue().toString()), Date.valueOf(addDriverInsuranceRenewalDateField.getValue().toString()));
 			DriverLicence licence = new DriverLicence(Integer.parseInt(addDriverLicenceIDField.getText()), Date.valueOf(addDriverExpirationDateField.getValue().toString()), Date.valueOf(addDriverRenewalDateField.getValue().toString()));
-	        Driver driver = new Driver(0, driverName, addDriverAddressField.getText().trim(), addDriverPhoneNumberField.getText().trim(), addDriverEmailField.getText().trim(), Date.valueOf(addDriverDateOfBirthField.getValue().toString()), addDriverShiftTypeField.getText().trim());
+	        Driver driver = new Driver(0, driverName, addDriverAddressField.getText().trim(), addDriverPhoneNumberField.getText().trim(), addDriverEmailField.getText().trim(), LocalDate.parse(addDriverDateOfBirthField.getValue().toString()), addDriverShiftTypeField.getText().trim(), true, true, addDriverAddressField.getText().trim(), car.getCarID(), insurance.getInsuranceID(), licence.getLicenseID());
+			DataHandler.addDriverLicence(licence);
+			DataHandler.addDriverInsurance(insurance);
 	        DataHandler.addDriver(driver);
 			DataHandler.getAllDrivers();
+			DataHandler.getAllDriversLicenses();
+			DataHandler.getAllEmpsInsurances();
 	        getDriverAddStage().close();
 	    }
 
 	}	
 	// Event Listener on Button.onAction
 	@FXML
-	public void close_add_driver_btn_clicked(ActionEvent event) {
+	public void close_add_driver_btn_clicked() {
         getDriverAddStage().close();
 	}
 
@@ -128,5 +171,17 @@ public class AddDriverController {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		DataHandler.getAllCars();
+		for (Car car : Car.cars) {
+			if (DataHandler.checkCarFreeForDriver(car.getCarID())) {
+				MenuItem menuItem = new MenuItem(car.getCarID() + " " + car.getCarModel());
+				menuItem.setOnAction(actionEvent -> addDriverSelectCarMenuButton.setText(menuItem.getText()));
+				addDriverSelectCarMenuButton.getItems().add(menuItem);
+			}
+		}
 	}
 }

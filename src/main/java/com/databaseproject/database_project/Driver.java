@@ -7,10 +7,14 @@ import javafx.collections.ObservableList;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Driver {
+
+    public static Driver activeDriver = null;
+
 
     public static ArrayList<Driver> availableDrivers = new ArrayList<Driver>();
     static ArrayList<Driver> drivers = new ArrayList<Driver>();
@@ -23,37 +27,33 @@ public class Driver {
     private String zip;
     private String phone;
     private String email;
-    private Date DOB;
+    private LocalDate DOB;
     private String workHours;
     private boolean isAvailable; //available to take trips
     private boolean isWorking; //working
     private Date expectedAvailabilityTime;
     private String location;
+    private float salary;
 
-    private Car car;
-
-    private DriverLicence licence;
-
-    public DriverLicence getLicence() {
-        return licence;
+    public float getSalary() {
+        return salary;
     }
 
-    public void setLicence(DriverLicence licence) {
-        this.licence = licence;
+    public void setSalary(float salary) {
+        this.salary = salary;
     }
 
-    public EmpInsurance getInsurance() {
-        return insurance;
-    }
+    private int carID;
 
-    public void setInsurance(EmpInsurance insurance) {
-        this.insurance = insurance;
-    }
-
-    private EmpInsurance insurance;
+    private int licenceID;
 
 
-    Driver(int driverID, String fullName, String city, String phone, String email, Date DOB, String workHours, boolean isWorking, boolean isAvailable, String location, Car car, EmpInsurance insurance, DriverLicence licence) {
+
+    private int insuranceID;
+    java.sql.Date sqlDOB;
+
+
+    Driver(int driverID, String fullName, String city, String phone, String email, LocalDate DOB, String workHours, boolean isWorking, boolean isAvailable, String location, int carID, int insuranceID, int  licenceID) {
         this.driverID = driverID;
         this.name = fullName;
         this.city = city;
@@ -64,12 +64,36 @@ public class Driver {
         this.isWorking = isWorking;
         this.location = location;
         this.isAvailable = isAvailable;
-        this.car = car;
-        this.insurance = insurance;
-        this.licence = licence;
-
+        this.carID = carID;
+        this.insuranceID = insuranceID;
+        this.licenceID = licenceID;
+        sqlDOB = java.sql.Date.valueOf(DOB);
+        Car car = Car.getCar(carID);
+        if (car.getCarDriver1() <= -1){
+            car.setCarDriver1ID((driverID));
+        } else if (car.getCarDriver2() <= -1){
+            car.setCarDriver2ID(driverID);
+        }
+    }
+    public int getLicenceID() {
+        return licenceID;
     }
 
+    public java.sql.Date getSqlDOB() {
+        return sqlDOB;
+    }
+
+    public void setLicence(int licenceID) {
+        this.licenceID = licenceID;
+    }
+
+    public int getInsurance() {
+        return insuranceID;
+    }
+
+    public void setInsurance(int insuranceID) {
+        this.insuranceID = insuranceID;
+    }
     //method to sort drivers by availability
     public static void sortDriversByAvailability() {
         ArrayList<Driver> sortedDrivers = new ArrayList<Driver>();
@@ -202,6 +226,22 @@ public class Driver {
         this.addressSecondLine = addressSecondLine;
     }
 
+    public void setCarID(int carID) {
+        this.carID = carID;
+    }
+
+    public void setLicenceID(int licenceID) {
+        this.licenceID = licenceID;
+    }
+
+    public int getInsuranceID() {
+        return insuranceID;
+    }
+
+    public void setInsuranceID(int insuranceID) {
+        this.insuranceID = insuranceID;
+    }
+
     public String getCity() {
         return city;
     }
@@ -234,11 +274,11 @@ public class Driver {
         this.email = email;
     }
 
-    public Date getDOB() {
+    public LocalDate getDOB() {
         return DOB;
     }
 
-    public void setDOB(Date DOB) {
+    public void setDOB(LocalDate DOB) {
         this.DOB = DOB;
     }
 
@@ -282,11 +322,9 @@ public class Driver {
         this.location = location;
     }
 
-    public Car getCar(){
-        return this.car;
+    public int getCarID(){
+        return this.carID;
     }
 
-    public void setCar(Car car){
-        this.car = car;
-    }
+
 }

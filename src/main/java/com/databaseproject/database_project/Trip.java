@@ -21,6 +21,8 @@ public class Trip {
     private LocalDateTime departureTime;
     private LocalDateTime expectedArrivalTime;
 
+    private String tripManagerStatus;
+
 
     private int driverID;
     private int carID;
@@ -41,37 +43,6 @@ public class Trip {
     SimpleStringProperty tripBeginningTime;
 
     SimpleStringProperty tripEndTime;
-
-
-//    public static void getTripsDate() {
-//        for (Trip trip : trips){
-//            trip.tripDate = Date.valueOf(trip.departureTime.toLocalDate());
-//        }
-//    }
-
-//    public static void getTripFrom() {
-//        for (Trip trips : trips){
-//            trips.tripFrom = Route.getRoute(trips.routeID).getFrom();
-//        }
-//    }
-//
-//    public static void getTripTo() {
-//        for (Trip trips : trips){
-//            trips.tripTo = Route.getRoute(trips.routeID).getTo();
-//        }
-//    }
-//
-//    public static void getTripBeginningTime() {
-//        for (Trip trips : trips){
-//            trips.tripBeginningTime = trips.departureTime.toLocalTime();
-//        }
-//    }
-
-//    public static void getTripEndTime() {
-//        for (Trip trips : trips){
-//            trips.tripEndTime = trips.expectedArrivalTime.toLocalTime();
-//        }
-//    }
 
     public int getNumOfPassengers() {
         return numOfPassengers;
@@ -106,15 +77,41 @@ public Trip(int tripID, int operatorID, LocalDateTime departureTime, int driverI
         this.isCancelled = false;
         this.isFinished = false;
         this.expectedArrivalTime = expectedArrivalTime;
-        this.tripDate = new SimpleStringProperty(departureTime.toLocalDate().toString());
-        this.tripBeginningTime = new SimpleStringProperty(departureTime.toLocalTime().toString());
-        this.tripEndTime = new SimpleStringProperty(expectedArrivalTime.toLocalTime().toString());
-        this.tripFrom = new SimpleStringProperty(Route.getRoute(routeID).getFrom());
-        this.tripTo = new SimpleStringProperty(Route.getRoute(routeID).getTo());
+//        this.tripDate = new SimpleStringProperty(departureTime.toLocalDate().toString());
+//        this.tripBeginningTime = new SimpleStringProperty(departureTime.toLocalTime().toString());
+//        this.tripEndTime = new SimpleStringProperty(expectedArrivalTime.toLocalTime().toString());
+//        this.tripFrom = new SimpleStringProperty(Route.getRoute(routeID).getFrom());
+//        this.tripTo = new SimpleStringProperty(Route.getRoute(routeID).getTo());
 
     }
 
     public static ArrayList<Trip> trips = new ArrayList<>();
+
+    public static ObservableList<Trip> getTrips() {
+        return FXCollections.observableArrayList(trips);
+    }
+
+    public String getTripFrom(){
+        return Route.getRoute(routeID).getFrom();
+    }
+
+    public String getTripTo(){
+        return Route.getRoute(routeID).getTo();
+    }
+
+    public String getTripDate(){
+        return departureTime.toLocalDate().toString();
+    }
+
+    public String getTripBeginningTime(){
+        return departureTime.toLocalTime().toString();
+    }
+
+    public String getTripEndTime(){
+        return expectedArrivalTime.toLocalTime().toString();
+    }
+
+
 
 
     public int getTripID() {
@@ -332,6 +329,7 @@ public Trip(int tripID, int operatorID, LocalDateTime departureTime, int driverI
         int randomEvent = random.nextInt(14);
         if (randomEvent == 10) { //nothing against number 10
             this.isCancelled = true;
+            this.isFinished = true;
             this.status = "Cancelled :/";
         }
         else if (randomEvent == 13/*Lucky number*/){ // 1/13 chance say will arrive earlier than expected in a window of 20% of the trip duration
@@ -349,6 +347,12 @@ public Trip(int tripID, int operatorID, LocalDateTime departureTime, int driverI
 
         }
         else this.status = "On time!";
+        DataHandler.updateTrips();
+    }
 
+    public String getTripManagerStatus(){
+        if (this.isCancelled) return "Cancelled";
+        else if (this.isFinished) return "Finished";
+        else return "On the way";
     }
 }

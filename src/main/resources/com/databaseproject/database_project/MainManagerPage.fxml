@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#fillTripsInManager" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.databaseproject.database_project.ManagerMainController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#fillTables" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.databaseproject.database_project.ManagerMainController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="900.0" spacing="630.0">
          <children>
             <Button cancelButton="true" mnemonicParsing="false" onAction="#managerLogoffButtonClicked" text="Log off" textFill="#e10f0f" />
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#managerAddButtonClicked" text="Add Admin" />
-                  <Button mnemonicParsing="false" onAction="#managerEditButtonClicked" text="Edit Credintials" />
+                  <Button disable="true" mnemonicParsing="false" onAction="#managerAddButtonClicked" text="Add Admin" />
+                  <Button disable="true" mnemonicParsing="false" onAction="#managerEditButtonClicked" text="Edit Credintials" />
                </children>
             </HBox>
          </children>
@@ -39,15 +39,11 @@
                                     <TableColumn fx:id="tripEndTimeColumn" prefWidth="75.0" text="End Time" />
                                     <TableColumn fx:id="tripDriverIDColumn" prefWidth="75.0" text="Driver" />
                                     <TableColumn fx:id="tripcarIDColumn" prefWidth="75.0" text="Car" />
-                                    <TableColumn fx:id="tripStatusColumn" prefWidth="75.0" text="Status" />
                                     <TableColumn fx:id="tripopretorIDColumn" prefWidth="75.0" text="Operator" />
+                                    <TableColumn fx:id="tripStatusColumn" prefWidth="75.0" text="Status" />
                                  </columns>
                               </TableView>
-                              <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="901.0">
-                                 <children>
-                                    <Button mnemonicParsing="false" text="Button" />
-                                 </children>
-                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="901.0" />
                            </children>
                         </VBox>
                      </children>
@@ -60,20 +56,20 @@
                      <children>
                         <VBox prefHeight="640.0" prefWidth="900.0">
                            <children>
-                              <TableView prefHeight="609.0" prefWidth="900.0">
+                              <TableView fx:id="driversTable" prefHeight="609.0" prefWidth="900.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="ID" />
-                                    <TableColumn prefWidth="123.0" text="Name" />
-                                    <TableColumn prefWidth="130.0" text="Phone" />
-                                    <TableColumn prefWidth="123.0" text="Address" />
-                                    <TableColumn prefWidth="155.0" text="Email" />
-                                    <TableColumn prefWidth="82.0" text="DOB" />
-                                    <TableColumn prefWidth="98.0" text="Shift" />
+                                    <TableColumn fx:id="driverIDColumn" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="driverNameColumn" prefWidth="123.0" text="Name" />
+                                    <TableColumn fx:id="driverPhoneColumn" prefWidth="130.0" text="Phone" />
+                                    <TableColumn fx:id="driverAddressColumn" prefWidth="123.0" text="Address" />
+                                    <TableColumn fx:id="driverEmailColumn" prefWidth="155.0" text="Email" />
+                                    <TableColumn fx:id="driverDOBColumn" prefWidth="82.0" text="DOB" />
+                                    <TableColumn fx:id="driverShiftColumn" prefWidth="98.0" text="Shift" />
                                  </columns>
                               </TableView>
                               <HBox alignment="CENTER" prefHeight="35.0" prefWidth="900.0" spacing="30.0">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#driverRemoveButtonClicked" text="Remove Selected" />
+                                    <Button mnemonicParsing="false" onAction="#changDriverCarButtonClicked" text="Change Car" />
                                     <Button mnemonicParsing="false" onAction="#driverEditButtonClicked" text="Edit Selected" />
                                     <Button mnemonicParsing="false" onAction="#driverAddButtonClicked" text="Add Driver" />
                                  </children>
@@ -84,7 +80,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="operatorsTab" onSelectionChanged="#fillManagerMain" text="Operators">
+            <Tab fx:id="operatorsTab" text="Operators">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>
@@ -105,7 +101,6 @@
                               </TableView>
                               <HBox alignment="CENTER" prefHeight="36.0" prefWidth="901.0" spacing="30.0">
                                  <children>
-                                    <Button fx:id="operatorRemoveButton" mnemonicParsing="false" onAction="#operatorRemoveButtonClicked" text="Remove Selected" />
                                     <Button fx:id="operatorEditButton" mnemonicParsing="false" onAction="#operatorEditButtonClicked" text="Edit Selected" />
                                     <Button mnemonicParsing="false" onAction="#operatorAddButtonClicked" text="Add Operator" />
                                  </children>
@@ -122,21 +117,19 @@
                      <children>
                         <VBox prefHeight="641.0" prefWidth="900.0">
                            <children>
-                              <TableView prefHeight="610.0" prefWidth="900.0">
+                              <TableView fx:id="CarsTable" prefHeight="610.0" prefWidth="900.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="ID" />
-                                    <TableColumn prefWidth="75.0" text="Model" />
-                                    <TableColumn prefWidth="143.0" text="Date of Purchase" />
-                                    <TableColumn prefWidth="131.0" text="Licencse Expiration" />
-                                    <TableColumn prefWidth="140.0" text="Insurance Expiration" />
-                                    <TableColumn prefWidth="75.0" text="Driver 1" />
-                                    <TableColumn prefWidth="75.0" text="Driver 2" />
-                                    <TableColumn prefWidth="75.0" text="Driver 3" />
+                                    <TableColumn fx:id="CarIDColumn" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="CarModelColumn" prefWidth="75.0" text="Model" />
+                                    <TableColumn fx:id="CarDateOfPurrchaseColumn" prefWidth="143.0" text="Date of Purchase" />
+                                    <TableColumn fx:id="CarLicencseExpirationColumn" prefWidth="131.0" text="Licencse Expiration" />
+                                    <TableColumn fx:id="CarInsuranceExpirationColumn" prefWidth="140.0" text="Insurance Expiration" />
+                                    <TableColumn fx:id="CarDriver1Column" prefWidth="75.0" text="Driver 1" />
+                                    <TableColumn fx:id="CarDriver2Column" prefWidth="75.0" text="Driver 2" />
                                  </columns>
                               </TableView>
                               <HBox alignment="CENTER" prefHeight="33.0" prefWidth="900.0" spacing="30.0">
                                  <children>
-                                    <Button fx:id="carRemoveButton" mnemonicParsing="false" onAction="#carRemoveButtonClicked" text="Remove Selected" />
                                     <Button fx:id="carEditButton" mnemonicParsing="false" onAction="#carEditButtonClicked" text="Edit Selected" />
                                     <Button fx:id="carAddButton" mnemonicParsing="false" onAction="#carAddButtonClicked" text="Add Car" />
                                  </children>
@@ -147,24 +140,23 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Routes">
+            <Tab fx:id="routesTab" text="Routes">
                <content>
                   <AnchorPane maxHeight="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
                      <children>
                         <VBox prefHeight="642.0" prefWidth="901.0">
                            <children>
-                              <TableView prefHeight="612.0" prefWidth="901.0">
+                              <TableView fx:id="routesTable" prefHeight="612.0" prefWidth="901.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="ID" />
-                                    <TableColumn prefWidth="136.0" text="From" />
-                                    <TableColumn prefWidth="142.0" text="To" />
-                                    <TableColumn prefWidth="136.0" text="Cost" />
-                                    <TableColumn prefWidth="168.0" text="Estimated Duration" />
+                                    <TableColumn fx:id="RoutesIDColumn" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="RoutesFromColumn" prefWidth="136.0" text="From" />
+                                    <TableColumn fx:id="RoutesToColumn" prefWidth="142.0" text="To" />
+                                    <TableColumn fx:id="RoutesCostColumn" prefWidth="136.0" text="Cost" />
+                                    <TableColumn fx:id="RoutesEstimatedColumn" prefWidth="168.0" text="Estimated Duration" />
                                  </columns>
                               </TableView>
                               <HBox alignment="CENTER" prefHeight="34.0" prefWidth="901.0" spacing="30.0">
                                  <children>
-                                    <Button fx:id="routeRemoveButton" mnemonicParsing="false" onAction="#routeRemoveButtonClicked" text="Remove Selected" />
                                     <Button fx:id="routeEditButton" mnemonicParsing="false" onAction="#routeEditButtonClicked" text="Edit Selected" />
                                     <Button fx:id="routeAddButton" mnemonicParsing="false" onAction="#routeAddButtonClicked" text="Add Route" />
                                  </children>

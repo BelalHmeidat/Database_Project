@@ -35,19 +35,19 @@
                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                   <children>
                      <Label text="Name:" />
-                     <Label text="Label" />
+                     <Label fx:id="operatorMainName" />
                   </children>
                </HBox>
                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                   <children>
                      <Label text="ID:" />
-                     <Label text="Label" />
+                     <Label fx:id="operatorMainID" />
                   </children>
                </HBox>
                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                   <children>
                      <Label text="DoB:" />
-                     <Label text="Label" />
+                     <Label fx:id="operatorDOB" />
                   </children>
                </HBox>
             </children>
@@ -57,19 +57,19 @@
                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                   <children>
                      <Label text="Phone:" />
-                     <Label text="Label" />
+                     <Label fx:id="operatorMainPhoneNumber" />
                   </children>
                </HBox>
                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                   <children>
                      <Label text="Address:" />
-                     <Label text="Label" />
+                     <Label fx:id="operatorMainAddress" />
                   </children>
                </HBox>
                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                   <children>
                      <Label text="Shift:" />
-                     <Label text="Label" />
+                     <Label fx:id="operatorMainShift" />
                   </children>
                </HBox>
             </children>
@@ -273,20 +273,7 @@
                            <StackPane fx:id="BeginTime" prefHeight="48.0" prefWidth="101.0" />
                         </children>
                      </VBox>
-                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                        <children>
-                           <Button cancelButton="true" mnemonicParsing="false" text="Cancel" textFill="#eb2121">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                           </Button>
-                           <Button fx:id="modifyTripButton" defaultButton="true" mnemonicParsing="false" prefWidth="120.0" text="Modify">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                           </Button>
-                        </children>
-                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   </children>
                </GridPane>
             </children>

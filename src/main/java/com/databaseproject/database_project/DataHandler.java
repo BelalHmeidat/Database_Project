@@ -50,7 +50,7 @@ public class DataHandler {
                 String password = rs.getString("operator_password");
                 Operator operator = new Operator(id, name, phone, shiftType, address, email, dobToDate, salary, password);
                 Operator.operators.add(operator);
-                System.out.println(id + " " + name);
+//                System.out.println(id + " " + name);
             }
         }catch (SQLException e){
 //            System.out.println("Connection Failed! Check output console");
@@ -72,14 +72,14 @@ public class DataHandler {
                 String phone = rs.getString("phone_number");
                 String email = rs.getString("email");
                 String address = rs.getString("address");
-                Date dob = rs.getDate("DOB");
+                LocalDate dob = rs.getDate("DOB").toLocalDate();
                 String shiftType = rs.getString("shift_type");
                 String driver_location = rs.getString("driver_location");
                 boolean isWorkingToday = false;
                 if (rs.getInt("isWorkingToday") == 1)  isWorkingToday = true;
                 boolean isAvailableToTakeTrips = false;
                 if (rs.getInt("isAvailableToTakeTrips") == 1) isAvailableToTakeTrips = true;
-                System.out.println(isAvailableToTakeTrips);
+//                System.out.println(isAvailableToTakeTrips);
                 int carID = rs.getInt("carID");
                 int licenceID = rs.getInt("licenceID");
                 int insuranceID = rs.getInt("insuranceID");
@@ -175,11 +175,23 @@ public class DataHandler {
 
     }
     public static void getAllCarsLicenses(){
-        //TODO
+        CarLicense.carLicenses.clear();
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM CarLicense");
+            while (rs.next()) {
+                int id = rs.getInt("LicenceID");
+                Date License_issue_date = rs.getDate("renewal_date");
+                Date License_expiry_date = rs.getDate("expiration_date");
+                CarLicense carLicense = new CarLicense(id, License_issue_date, License_expiry_date);
+                CarLicense.carLicenses.add(carLicense);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
     }
-    public static void getAllCarsRepairs(){
-        //TODO
-    }
+
 
     public static void getAllTrips(){
         Trip.trips.clear();
@@ -202,7 +214,11 @@ public class DataHandler {
                 LocalDateTime arrivalDateTime = LocalDateTime.of(endDate, endTime);
                 String passangerName = rs.getString("passenger_name");
                 String passangerPhone = rs.getString("passenger_phone");
+                boolean isCancelled = rs.getBoolean("isCancelled");
+                boolean isFinished = rs.getBoolean("isFinished");
                 Trip trip = new Trip(id, operatorID, departureDateTime, driverID, carID, routeID, numOfPassengers, passangerPhone, passangerName, arrivalDateTime);
+                trip.setCancelled(isCancelled);
+                trip.setFinished(isFinished);
                 Trip.trips.add(trip);
             }
         }catch (SQLException e){
@@ -242,6 +258,8 @@ public class DataHandler {
             e.printStackTrace();
             return;
         }
+        getAllOperators();
+
     }
 
     public static void getAvailableDrivers(Route route) {
@@ -298,11 +316,12 @@ public class DataHandler {
         }
     }
     public static void addDriver(Driver driver) {
+        getAllCars();
         String name = driver.getName();
         String phone = driver.getPhone();
         String email = driver.getEmail();
         String address = driver.getCity();
-        Date dob = (Date) driver.getDOB();
+        Date dob = Date.valueOf(driver.getDOB());
         String shiftType = driver.getWorkHours();
         String driver_location = driver.getLocation();
         boolean isWorkingToday = driver.isWorking();
@@ -311,12 +330,12 @@ public class DataHandler {
         boolean isAvailableToTakeTrips = driver.isAvailable();
         int available = 0;
         if (isAvailableToTakeTrips) available = 1;
-        int carID = driver.getCar().getCarID();
-        int licenceID = driver.getLicence().getLicenseID();
-        int insuranceID = driver.getInsurance().getInsuranceID();
+        int carID = driver.getCarID();
+        int licenceID = driver.getLicenceID();
+        int insuranceID = driver.getInsurance();
         try {
             Statement addDriver = connection.createStatement();
-            addDriver.executeUpdate("INSERT INTO driver (driver_name, phone_number, address, email, DOB, driver_location,shift_type, isWorkingToday,isAvailableToTakeTrips, carID, licenceID, insuranceID) values (" + name + "', '" + phone + "', '" + address + "', '" + email + "', '" + dob + "', '" + driver_location + "', '" + shiftType + "', '" + working + "'', '" + available + "', " + carID + ", " + licenceID +", " + insuranceID + ");");
+            addDriver.executeUpdate("INSERT INTO driver (driver_name, phone_number, email, address, dob, shift_type, driver_location, isWorkingToday, isAvailableToTakeTrips, carID, licenceID, insuranceID) values ('" + name + "', '" + phone + "', '" + email + "', '" + address + "', '" + dob.toString() + "', '" + shiftType + "', '" + driver_location + "', '" + working + "', '" + available + "', " + carID + ", " + licenceID + ", " + insuranceID + ");");
             getAllDrivers();
         } catch (SQLException e) {
             System.out.println("Connection Failed! Check output console");
@@ -332,7 +351,7 @@ public class DataHandler {
             String phone = driver.getPhone();
             String email = driver.getEmail();
             String address = driver.getCity();
-            Date dob = (Date) driver.getDOB();
+            Date dob = Date.valueOf(driver.getDOB());
             String shiftType = driver.getWorkHours();
             String driver_location = driver.getLocation();
             boolean isWorkingToday = driver.isWorking();
@@ -341,9 +360,9 @@ public class DataHandler {
             boolean isAvailableToTakeTrips = driver.isAvailable();
             int available = 0;
             if (isAvailableToTakeTrips) available = 1;
-            int carID = driver.getCar().getCarID();
-            int licenceID = driver.getLicence().getLicenseID();
-            int insuranceID = driver.getInsurance().getInsuranceID();
+            int carID = driver.getCarID();
+            int licenceID = driver.getLicenceID();
+            int insuranceID = driver.getInsuranceID();
             try {
                 Statement updateDriver = connection.createStatement();
                 updateDriver.executeUpdate("UPDATE driver SET driver_name = '" + name + "', phone_number = '" + phone + "', address = '" + address + "', email = '" + email + "', DOB = '" + dob + "', driver_location = '" + driver_location + "', shift_type = '" + shiftType + "', isWorkingToday = '" + working + "', isAvailableToTakeTrips = '" + available + "', carID = " + carID + ", licenceID = " + licenceID + ", insuranceID = " + insuranceID + " WHERE driverID = " + id + ";");
@@ -375,6 +394,7 @@ public class DataHandler {
             try {
                 Statement updateTrip = connection.createStatement();
                 updateTrip.executeUpdate("UPDATE trip SET driverID = " + driverID + ", carID = " + carID + ", operatorID = " + operatorID + ", pathID = " + pathID + ", numOFpassenger = " + numOfPassengers + ", tripDate = '" + tripDate.toString() + "', begin_time = '" + beginTime.toString() + "', end_time = '" + endTime.toString() + "', passenger_name = '" + passengerName + "', passenger_phone = '" + passengerPhone + "', isFinished = '" + finished + "', isCancelled = '" + canceled + "' WHERE tripID = " + id + ";");
+//                System.out.println("Trip " + id + " updated " + trip.isCancelled() + " " + canceled);
             } catch (SQLException e) {
                 System.out.println("Connection Failed! Check output console");
                 e.printStackTrace();
@@ -383,27 +403,61 @@ public class DataHandler {
         }
     }
 
-//    public static void addOperator (Operator operator) {
-//        String name =  addOperatorNameTextField.getText();
-//        int id = operator.getOperatorID();
-////        String name = operator.getOperatorName();
-//        String phone =
-//        String email = operator.getEmail();
-//        String address = operator.getAddress();
-//        Date dob = (Date) operator.getDOB();
-//        String shiftType = operator.getShiftType();
-//        float salary = operator.getSalary();
-//
-//        try {
-//            Statement addOperator = connection.createStatement();
-//            addOperator.executeUpdate("INSERT INTO operator (operator_name, phone_number, email, address, DOB, shift_type, salary) values (" + id + ", '" + name + "', '" + phone + "', '" + email + "', '" + address + "', '" + dob + "', '" + shiftType + "', " + salary + ");");
-//
-//        } catch (SQLException e) {
-//            System.out.println("Connection Failed! Check output console");
-//            e.printStackTrace();
-//            return;
-//        }
-//    }
+    public static void addOperator (Operator operator) {
+        String name = operator.getOperatorName();
+        String phone = operator.getOperatorPhone();
+        String email = operator.getOperatorEmail();
+        String address = operator.getOperatorAddress();
+        Date dob =  operator.getOperatorDOB();
+        String shiftType = operator.getOperatorShift();
+        float salary = operator.getOperatorSalary();
+
+        try {
+            Statement addOperator = connection.createStatement();
+            addOperator.executeUpdate("INSERT INTO operator (operator_name, phone_number, email, address, DOB, shift_type, salary) values (" + "'" + name + "', '" + phone + "', '" + email + "', '" + address + "', '" + dob + "', '" + shiftType + "', " + salary + ");");
+
+        } catch (SQLException e) {
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+            return;
+        }
+        getAllOperators();
+    }
+
+    public static ArrayList<Car> getFreeCars(){
+        ArrayList<Car> freeCars = new ArrayList<>();
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select distinct carID from car where carID not in ( select distinct d1.carID from driver d1, driver d2 where d1.carID = d2.carID and d1.driverID <> d2.driverID);");
+            while (resultSet.next()){
+                for (Car car : Car.cars){
+                    if (car.getCarID() == resultSet.getInt("carID")){
+                        freeCars.add(car);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return freeCars;
+    }
+
+    public static boolean checkCarFreeForDriver(int carID){
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select distinct d1.carID from driver d1, driver d2 where d1.carID = d2.carID and d1.driverID <> d2.driverID;");
+            while (resultSet.next()){
+                if (carID == resultSet.getInt("carID")){
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
 
     public static boolean checkPhoneValidity(String phone){
         if (phone.length() != 11) return false;
@@ -414,7 +468,106 @@ public class DataHandler {
 
     }
 
-    public static void addOperator(Operator operator) {
-        //
+    public static void addCar(Car car) {
+        String car_type =car.getCarModel();
+        int yearOfMan = car.getYearOfMan();
+        int carLiscenceID= car.getCarLiscenceID();
+        int carInsuranceID =car.getCarInsuranceID();
+        try {
+            Statement addCar = connection.createStatement();
+            addCar.executeUpdate("insert into car (car_type, yom ,licenceID, InsuranceID) values ('" + car_type + "', " + yearOfMan + ", " +carLiscenceID+ ", " + carInsuranceID + ")");
+
+        } catch (SQLException e) {
+            System.out.println("Error in adding car! Check output console");
+            e.printStackTrace();
+            return;
+        }
+        getAllCars();
     }
+    public static void addRoute(Route route) {
+        String sourceName =route.getFrom();
+        String DestinationName=route.getTo();
+        float RouteCost = route.getCost();
+        int RouteDuration= route.getDuration();
+        try {
+            Statement addCar = connection.createStatement();
+            addCar.executeUpdate("insert into route (source_name, destination_name ,path_cost, expected_duration) values (" + sourceName + "', '" + DestinationName + "', '" +RouteCost+ "', '" + RouteDuration + ")");
+
+        } catch (SQLException e) {
+            System.out.println("Error in adding route! Check output console");
+            e.printStackTrace();
+            return;
+        }
+        getAllRoutes();
+    }
+
+
+
+    public static void calculateDriverSalaryForToday() {
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery("select  D.driverID, sum(R.path_cost) as todaySalary from trip T, route R, driver D where D.driverID = T.driverID and T.pathID = R.pathID and T.tripDate = curdate() group by D.driverID;");
+            while (rs.next()) {
+                Driver driver = Driver.getDriver(rs.getInt("driverID"));
+                driver.setSalary(rs.getFloat("todaySalary"));
+            }
+        }catch (SQLException e) {
+            System.out.println("Error in adding car! Check output console");
+            e.printStackTrace();
+            return;
+        }
+
+    }
+
+    public static void addDriverLicence(DriverLicence driverLicence){
+        int licenceID = driverLicence.getLicenseID();
+        Date licenceIssueDate = driverLicence.getRenewalDate();
+        Date licenceExpiryDate = driverLicence.getExpirationDate();
+
+        try {
+            Statement addCar = connection.createStatement();
+            addCar.executeUpdate("insert into DriverLicence (licenceID, Renewal_Date ,Expiration_Date) values (" + licenceID + ", '" + licenceIssueDate + "', '" +licenceExpiryDate+ "')");
+
+        } catch (SQLException e) {
+            System.out.println("Error in adding driver licence! Check output console");
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    public static void addDriverInsurance(EmpInsurance driverInsurance){
+        int insuranceID = driverInsurance.getInsuranceID();
+        Date insuranceIssueDate = driverInsurance.getRenwalDate();
+        Date insuranceExpiryDate = driverInsurance.getExpirationDate();
+        float insuranceCost = driverInsurance.getCost();
+
+        try {
+            Statement addCar = connection.createStatement();
+            addCar.executeUpdate("insert into carInsurance (insuranceID, Renewal_Date ,Expiration_Date, Cost) values (" + insuranceID + ", '" + insuranceIssueDate + "', '" +insuranceExpiryDate + "'," + insuranceCost +");");
+
+        } catch (SQLException e) {
+            System.out.println("Error in adding car insurance! Check output console");
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    public static void updateRoutes() {
+        for (Route route : Route.routes) {
+            int id = route.getRouteID();
+            String from = route.getFrom();
+            String to = route.getTo();
+            float cost = route.getCost();
+            int duration = route.getDuration();
+            try {
+                Statement updateRoute = connection.createStatement();
+                updateRoute.executeUpdate("UPDATE route SET source_name = '" + from + "', destination_name = '" + to + "', path_cost = " + cost + ", expected_duration = " + duration + " WHERE pathID = " + id + ";");
+            } catch (SQLException e) {
+                System.out.println("Update route Failed! Check output console");
+                e.printStackTrace();
+                return;
+            }
+        }
+    }
+
 }

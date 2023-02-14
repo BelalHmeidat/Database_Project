@@ -22,12 +22,12 @@ public class Operator {
 
     private String operatorEmail;
 
-    private Date operatorDOB;
+    private java.sql.Date operatorDOB;
     private float operatorSalary;
 
     public static ArrayList<Operator> operators = new ArrayList<>();
 
-    Operator(int operatorID, String operatorName, String operatorPhone, String operatorShift, String operatorAddress, String operatorEmail, Date operatorDOB, float operatorSalary, String password) {
+    Operator(int operatorID, String operatorName, String operatorPhone, String operatorShift, String operatorAddress, String operatorEmail, java.sql.Date operatorDOB, float operatorSalary, String password) {
         this.operatorID = operatorID;
         this.operatorName = operatorName;
         this.operatorPhone = operatorPhone;
@@ -97,11 +97,11 @@ public class Operator {
         this.operatorEmail = operatorEmail;
     }
 
-    public Date getOperatorDOB() {
+    public java.sql.Date getOperatorDOB() {
         return operatorDOB;
     }
 
-    public void setOperatorDOB(Date operatorDOB) {
+    public void setOperatorDOB(java.sql.Date operatorDOB) {
         this.operatorDOB = operatorDOB;
     }
 
@@ -119,16 +119,16 @@ public class Operator {
         return operatorsList;
     }
 
-    public SimpleIntegerProperty getOperatorIDProperty() {
-        return new SimpleIntegerProperty(this.operatorID);
-    }
-
-    public SimpleDateFormat getDOBProperty() {
-        return new SimpleDateFormat("dd/MM/yyyy");
-    }
-
-    public SimpleFloatProperty getSalaryProperty() {
-        return new SimpleFloatProperty(this.operatorSalary);
-    }
+//    public SimpleIntegerProperty getOperatorIDProperty() {
+//        return new SimpleIntegerProperty(this.operatorID);
+//    }
+//
+////    public SimpleDateFormat getDOBProperty() {
+////        return new SimpleDateFormat("dd/MM/yyyy");
+////    }
+//
+//    public SimpleFloatProperty getSalaryProperty() {
+//        return new SimpleFloatProperty(this.operatorSalary);
+//    }
 }
 

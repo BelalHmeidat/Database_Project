@@ -7,9 +7,13 @@ public class CarInsurance {
 
     private int insuranceID;
 
-    private Date insuranceStartDate;
+    private java.sql.Date insuranceStartDate;
 
-    private Date insuranceEndDate;
+    private java.sql.Date insuranceEndDate;
+
+    private Float insuranceCost;
+
+
 
     public static ArrayList<CarInsurance> CarInsurances = new ArrayList<>();
 
@@ -27,20 +31,28 @@ public class CarInsurance {
         this.insuranceID = insuranceID;
     }
 
-    public Date getInsuranceStartDate() {
+    public java.sql.Date getInsuranceStartDate() {
         return insuranceStartDate;
     }
 
-    public void setInsuranceStartDate(Date insuranceStartDate) {
+    public void setInsuranceStartDate(java.sql.Date insuranceStartDate) {
         this.insuranceStartDate = insuranceStartDate;
     }
 
-    public Date getInsuranceEndDate() {
+    public java.sql.Date getInsuranceEndDate() {
         return insuranceEndDate;
     }
 
-    public void setInsuranceEndDate(Date insuranceEndDate) {
+    public void setInsuranceEndDate(java.sql.Date insuranceEndDate) {
         this.insuranceEndDate = insuranceEndDate;
+    }
+
+    public float getInsuranceCost() {
+        return insuranceCost;
+    }
+
+    public void setInsuranceCost(float insuranceCost) {
+        this.insuranceCost = insuranceCost;
     }
 
     public static CarInsurance getInsurance(int insuranceID){

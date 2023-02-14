@@ -8,13 +8,13 @@ public class EmpInsurance {
     int insuranceID;
     float cost;
 
-    Date expirationDate;
+    java.sql.Date expirationDate;
 
-    Date renwalDate;
+    java.sql.Date renwalDate;
 
     public static ArrayList<EmpInsurance> empInsurances = new ArrayList<>();
 
-    EmpInsurance(int insuranceID, float cost, Date expirationDate, Date renwalDate){
+    EmpInsurance(int insuranceID, float cost, java.sql.Date expirationDate, java.sql.Date renwalDate){
         this.insuranceID = insuranceID;
         this.cost = cost;
         this.expirationDate = expirationDate;
@@ -46,19 +46,19 @@ public class EmpInsurance {
         this.cost = cost;
     }
 
-    public Date getExpirationDate() {
+    public java.sql.Date getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(java.sql.Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    public Date getRenwalDate() {
+    public java.sql.Date getRenwalDate() {
         return renwalDate;
     }
 
-    public void setRenwalDate(Date renwalDate) {
+    public void setRenwalDate(java.sql.Date renwalDate) {
         this.renwalDate = renwalDate;
     }
 }

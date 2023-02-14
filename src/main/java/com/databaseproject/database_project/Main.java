@@ -8,6 +8,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Date;
 
+//Done DataHandler getAll, add, updateAll, delete methods
+//TODO MainManager Page tableview column fill
+//Done Operator Page Debug
+//TODO Add more queries
+//Done Salary Query
+//done Interfaces loaders (ManagerMainController)
+
+
 
 public class Main extends Application {
     static Stage generalLoginStage = null;

@@ -24,7 +24,6 @@ public class Car {
 
     private int carDriver2ID;
 
-    private int carDriver3ID;
 
     public Car (int carID, String carModel, int yearOFMan, int carLiscenceID, int carInsuranceID) {
         this.carID = carID;
@@ -32,6 +31,8 @@ public class Car {
         this.yearOfMan = yearOFMan;
         this.carLiscenceID = carLiscenceID;
         this.carInsuranceID = carInsuranceID;
+        this.carDriver1ID = -1;
+        this.carDriver2ID = -1;
     }
 
     public static ArrayList<Car> cars = new ArrayList<>();
@@ -89,7 +90,7 @@ public class Car {
         this.carInsuranceID = carInsuranceID;
     }
 
-    public int getCarDriver1ID() {
+    public int getCarDriver1() {
         return carDriver1ID;
     }
 
@@ -97,7 +98,7 @@ public class Car {
         this.carDriver1ID = carDriver1ID;
     }
 
-    public int getCarDriver2ID() {
+    public int getCarDriver2() {
         return carDriver2ID;
     }
 
@@ -105,24 +106,15 @@ public class Car {
         this.carDriver2ID = carDriver2ID;
     }
 
-    public int getCarDriver3ID() {
-        return carDriver3ID;
-    }
-
-    public void setCarDriver3ID(int carDriver3ID) {
-        this.carDriver3ID = carDriver3ID;
-    }
-
-    public Date getLicenseDate(){
-        if (CarLicense.getLicense(carLiscenceID) == null)
-            return null;
-        return CarLicense.getLicense(carLiscenceID).getExpirationDate();
-    }
-
-    public Date getInsuranceDate(){
+    public java.sql.Date getCarInsuranceExpiration(){
         if (CarInsurance.getInsurance(carInsuranceID) == null)
             return null;
         return CarInsurance.getInsurance(carInsuranceID).getInsuranceEndDate();
+    }
+    public java.sql.Date getCarLicenceExpiration(){
+        if (CarLicense.getLicense(carLiscenceID) == null)
+            return null;
+        return CarLicense.getLicense(carLiscenceID).getExpirationDate();
     }
 
     public SimpleIntegerProperty carIDProperty() {
@@ -133,13 +125,7 @@ public class Car {
         return new SimpleIntegerProperty(yearOfMan);
     }
 
-    public SimpleDateFormat carLicenceDateProperty() {
-        return new SimpleDateFormat(getLicenseDate().toString());
-    }
 
-    public SimpleDateFormat carInsuranceDateProperty() {
-        return new SimpleDateFormat(getInsuranceDate().toString());
-    }
 
 
 
